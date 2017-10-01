@@ -6,7 +6,7 @@ To win at Farkle you must be the player with the highest score above 10,000 poin
 1 Spot 100
 5 Spot 50
 
-Combinations
+##Combinations
 
 *Three 2 Spot 200
 *Three 3 Spot 300
@@ -16,4 +16,4 @@ Combinations
 *Three 1 Spot 1,000
 *Three Pairs 500
 *Six-Dice Straight 1,000
-*Three Farkles Lose 1,000 
+*Three Farkles Lose 1,000
