@@ -3,8 +3,8 @@
 
 To win at Farkle you must be the player with the highest score above 10,000 points on the final round of play.
 
-1 Spot 100
-5 Spot 50
+* 1 Spot 100
+* 5 Spot 50
 
 ## Combinations.
 
