@@ -5,4 +5,9 @@
 var board = function() {
   var runTotal = document.getElementById('currentTotal');
   var allDice = [];
+
+  for (var i = 1; i < i <= 6; i++) {
+    var j = newDie(i);
+    allDice.push(j);
+  }
 }
