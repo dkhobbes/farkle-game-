@@ -11,3 +11,9 @@ var board = function() {
     allDice.push(j);
   }
 }
+
+var self = this;
+document.getElementById("roll").onClick =
+  function(){
+    self.roll(allDice)
+  };
