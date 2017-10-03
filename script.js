@@ -24,7 +24,6 @@ document.getElementById("roll").onClick =
       document.getElementById("board").onclick = function(){
           rollScore = self.cTotal(allDice,scoreEle,rollScore);
       }
-  }
 
   Board.prototype.roll = function(ary){
     var ary = ary;
