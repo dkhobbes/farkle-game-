@@ -1,31 +1,40 @@
-//Select random numbers per die
-//add in score of selected by click
-//save score, and continue to roll
+/**********   BOARD  **************/
+//An array containing all of the dice images
+/*
+var pics = [ "img/side1.png",'img/side2.png','img/side3.png','img/side4.png','img/side5.png','img/side6.png'];
+*/
 
-var board = function() {
-  var runTotal = document.getElementById('currentTotal');
-  var allDice = [];
+var Board = function(){
+    // Create an array that will hold all the Dice in it.
+    var runTotal = document.getElementById("currentTotal");
+    var allDice = [];
 
-  for (var i = 1; i < i <= 6; i++) {
-    var j = newDie(i);
-    allDice.push(j);
-  }
+    for(var i = 1; i <= 6; i++){
+        var j = new Die(i);
+        allDice.push(j);
+    }
+    /* Need to attach the onclick function inside the class so that the button points to the class Object and not the Event Object.
+    This set up allows the class to be the event handler. Reference:
+    http://stackoverflow.com/questions/229080/class-methods-as-event-handlers-in-javascript
+
+    Also need to assign a variable for the class's this property so the constructor knows that 'this' is affiliated with this class and not the HTML element.
+    */
+    var self = this;
+    document.getElementById("roll").onclick = function(){
+        self.roll(allDice)
+    };
+
+    //Function calculates score of the current roll
+    var scoreKepper = Number(document.getElementById("curTotal").innerHTML);
+    var scoreEle = document.getElementById("curTotal");
+    var rollScore = 0;
+    document.getElementById("board").onclick = function(){
+        rollScore = self.cTotal(allDice,scoreEle,rollScore);
+    }
 }
 
-var self = this;
-document.getElementById("roll").onClick =
-  function(){
-    self.roll(allDice)
-  };
-
-  var scoreKepper = Number(document.getElementById("curTotal").innerHTML);
-      var scoreEle = document.getElementById("curTotal");
-      var rollScore = 0;
-      document.getElementById("board").onclick = function(){
-          rollScore = self.cTotal(allDice,scoreEle,rollScore);
-      }
-
-  Board.prototype.roll = function(ary){
+/* Roll function cycles through all the aray of die to simulate a new roll and sets the image source of each dice's HTML element to match the proper value. */
+Board.prototype.roll = function(ary){
     var ary = ary;
     for(var i = 0; i < 6; i++){
         var roll = Math.floor(Math.random() * 6);
@@ -33,6 +42,7 @@ document.getElementById("roll").onClick =
 
         if(x.isClicked() === false){
             var b = x.getEle();
+            /*b.src = pics[roll];*/
             x.val = roll + 1;
             b.innerHTML = x.val;
         }
@@ -42,18 +52,18 @@ document.getElementById("roll").onClick =
 }
 
 Board.prototype.cTotal = function(ary,t,roll){
-    var curTotal = Number(t.innerHTML);
+    var curTotal = Number(t.innerHTML);//holds value of rolling score for the players turn
     curTotal -= roll;
     t.innerHTML = curTotal;
     roll=0;
 
-    var ary = ary;
-    var selected = [];
+    var ary = ary;//array of dice
+    var selected = [];//new array to hold values of selected dice
     for(var i = 0; i < 6; i++){
         var x = ary[i];
         if(x.clickedThisTurn){
             var v = x.getValue();
-            selected.push(v);
+            selected.push(v); //adds die value to new array if it was selected
         }
     }
 
@@ -68,6 +78,7 @@ Board.prototype.cTotal = function(ary,t,roll){
     }
 
     if(selected.length > 1){
+        //If all the dice values are equal calculate various score
         if(selected.allValuesEqual()){
             if(selected.length===2){
                 if(selected[0]===1){
@@ -106,15 +117,17 @@ Board.prototype.cTotal = function(ary,t,roll){
                     }
                 }
                 console.log(results.length);
-
+                //If roll is a straight 1-6 add 1500
                 if (results[0] === undefined){
                     roll = 1500;
                 }
 
+                //If three pairs add 1500
                 else if(results.length === 3){
                     roll = 1500;
                 }
 
+                //Controls if "two triples" or "four of a number and a pair" rolled
                 else if(results.length === 2){
                     roll = 2500;
                 }
@@ -147,10 +160,12 @@ function Die(number){
     this.val = 1;
     this.ele = document.getElementById('die' + number);
 
+    //Function created to show the HTML element associated with the current dice
     this.getEle = function(){
         return this.ele;
     }
 
+    //Function to change the status of the HTML element from false or true.
     this.ele.onclick = function(){current.stateChange(current,current.clicked,current.ele)};
 
     Die.prototype.stateChange = function(current,clicked, ele){
@@ -168,7 +183,31 @@ function Die(number){
         }
     }
 
+    //Function that returns the clicked status of the HTML element
     Die.prototype.isClicked = function(){return this.clicked;}
 
+    //Function returns the value of the die
     Die.prototype.getValue = function(){return this.val;}
 }
+
+/**********   PLAYER  **************/
+/*
+var first = new Player();
+
+var Player = function(){
+    var score = 0;
+}
+
+/*var rTotal;
+var die1 = document.getElementById("dice").innerHTML;
+var roll = document.getElementsByClassName("dice").innerHTML;
+
+function checkRoll(b) {
+  if(b == 1){
+    alert("100 points");
+  }
+  else if (b==5){
+       alert("50 points");
+  }
+}
+*/
