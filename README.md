@@ -17,3 +17,10 @@ To win at Farkle you must be the player with the highest score above 10,000 poin
 * Three Pairs 500
 * Six-Dice Straight 1,000
 * Three Farkles Lose 1,000
+
+## Goals
+* make sure the dice add correctly for one player
+* add in mongoDB to login, and store data
+* add in multiple players
+* change up design of game
+* add in dice roll animation
