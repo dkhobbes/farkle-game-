@@ -189,25 +189,3 @@ function Die(number){
     //Function returns the value of the die
     Die.prototype.getValue = function(){return this.val;}
 }
-
-/**********   PLAYER  **************/
-/*
-var first = new Player();
-
-var Player = function(){
-    var score = 0;
-}
-
-/*var rTotal;
-var die1 = document.getElementById("dice").innerHTML;
-var roll = document.getElementsByClassName("dice").innerHTML;
-
-function checkRoll(b) {
-  if(b == 1){
-    alert("100 points");
-  }
-  else if (b==5){
-       alert("50 points");
-  }
-}
-*/
